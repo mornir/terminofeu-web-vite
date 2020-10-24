@@ -2308,6 +2308,13 @@ vite@^1.0.0-rc.1:
     vue "^3.0.0-rc.10"
     ws "^7.3.1"
 
+vue-i18n@^9.0.0-beta.6:
+  version "9.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-9.0.0-beta.6.tgz#ea89cee5ade18f2a2d0f2ead0ac4a6bedccade6e"
+  integrity sha512-6WWNumUYOnoFi50szUxhxNjTntWlL3SSb6DCoDQW3aKIGK6xTKj9bLI1gnSPfFn54dTYlJtzxEHuY8C/kvm7kg==
+  dependencies:
+    source-map "^0.6.1"
+
 vue@^3.0.0-rc.1, vue@^3.0.0-rc.10:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.0.2.tgz#9d5b7b2983f35e64a34d13c7c9d6831239feca3c"

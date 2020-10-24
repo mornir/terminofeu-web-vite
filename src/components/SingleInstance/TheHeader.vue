@@ -1,5 +1,5 @@
 <template>
   <header>
-    <nav>Nav</nav>
+    <nav>{{ $t("hello") }}</nav>
   </header>
 </template>
