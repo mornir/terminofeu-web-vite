@@ -1,6 +1,11 @@
 <template>
   <TheHeader />
-  <p>{{ $t("hello") }}</p>
+
+  <ul>
+    <li v-for="entry in entries" :key="entry._id">
+      {{ entry.content[$i18n.locale]?.preferredTerm }}
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -15,13 +20,18 @@ const client = new PicoSanity({
 
 export default {
   name: "App",
+  data() {
+    return {
+      entries: [],
+    }
+  },
   components: {
     TheHeader,
   },
   created() {
     client
-      .fetch(`*[_type == "entry"]`)
-      .then((entries) => console.log(entries))
+      .fetch(`*[_type == "entry"]{_id, content{ de, fr }}`)
+      .then((entries) => (this.entries = entries))
       .catch((err) => console.error("Oh noes: %s", err.message))
   },
 }
