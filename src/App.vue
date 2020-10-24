@@ -1,11 +1,14 @@
 <template>
-  <TheHeader />
-
-  <ul>
-    <li v-for="entry in entries" :key="entry._id">
-      {{ entry.content[$i18n.locale]?.preferredTerm }}
-    </li>
-  </ul>
+  <div class="px-16 prose lg:prose-xl">
+    <TheHeader />
+    <main>
+      <ul>
+        <li v-for="entry in entries" :key="entry._id">
+          {{ entry.content[$i18n.locale]?.preferredTerm }}
+        </li>
+      </ul>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -17,6 +20,16 @@ const client = new PicoSanity({
   dataset: "production",
   useCdn: true,
 })
+
+const query = /* groq */ `*[_type == "entry"]
+{
+ _id,
+ content {
+   de,
+   fr
+ }
+}
+`
 
 export default {
   name: "App",
@@ -30,7 +43,7 @@ export default {
   },
   created() {
     client
-      .fetch(`*[_type == "entry"]{_id, content{ de, fr }}`)
+      .fetch(query)
       .then((entries) => (this.entries = entries))
       .catch((err) => console.error("Oh noes: %s", err.message))
   },
