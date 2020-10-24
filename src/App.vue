@@ -1,5 +1,6 @@
 <template>
   <TheHeader />
+  <p>{{ $t("hello") }}</p>
 </template>
 
 <script>
