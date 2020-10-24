@@ -2,6 +2,7 @@
   <div class="px-16 prose lg:prose-xl">
     <TheHeader />
     <main>
+      <router-view />
       <ul>
         <li v-for="entry in entries" :key="entry._id">
           {{ entry.content[$i18n.locale]?.preferredTerm }}
