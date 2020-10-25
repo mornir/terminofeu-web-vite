@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { SanityContent } from "../components/sanity-content.ts"
+
 const query = /* groq */ `*[_type == "entry"]
 {
  _id,
@@ -25,6 +27,9 @@ const query = /* groq */ `*[_type == "entry"]
 
 export default {
   name: "Home",
+  components: {
+    SanityContent,
+  },
   data() {
     return {
       entries: [],
