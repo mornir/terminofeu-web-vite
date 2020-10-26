@@ -1,5 +1,7 @@
 import defu from "defu"
 
+import { h } from "vue"
+
 import type { VNode, VNodeData, VueConstructor } from "vue"
 
 import type { FunctionalComponentOptions } from "vue"
@@ -154,7 +156,6 @@ function findSerializer(
 
 export const SanityContent = extendVue({
   name: "SanityContent",
-  functional: true,
   props: {
     blocks: {
       type: Array as () => Array<CustomBlock | Block>,
@@ -166,7 +167,7 @@ export const SanityContent = extendVue({
     },
     renderContainerOnSingleChild: { type: Boolean, default: false },
   },
-  render(h, { props, data }) {
+  render(props, context) {
     function wrapStyle(
       { style, listItem }: CustomBlock | Block | List,
       serializers: Required<Serializers>,
@@ -278,25 +279,26 @@ export const SanityContent = extendVue({
       serializers.types.list ||
       extendVue({
         name: "ListComponent",
-        functional: true,
         props: {
           children: {
             type: Array as () => Array<Block | CustomBlock | List>,
             default: () => [] as Array<Block | CustomBlock | List>,
           },
         },
-        render(h, { props }) {
+        render(props, context) {
+          console.log(props, context)
+          console.log(context)
           const tag =
-            props.children.length && props.children[0].listItem === "number"
+            context.slots?.length && context.slots[0].listItem === "number"
               ? "ol"
               : "ul"
-          return h(tag, {}, renderBlocks(props.children, serializers, true))
+          return h(tag, {}, renderBlocks(context.slots, serializers, true))
         },
       })
 
     return h(
       serializers.container,
-      data,
+      context.attrs,
       renderBlocks(props.blocks || [], serializers)
     )
   },
