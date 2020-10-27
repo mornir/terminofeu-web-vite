@@ -7,12 +7,14 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@sanity/client": "^2.0.1",
     "@tailwindcss/typography": "^0.2.0",
     "picosanity": "^2.1.2",
     "tailwindcss": "^1.9.6",
     "vue": "^3.0.0-rc.1",
     "vue-i18n": "^9.0.0-beta.6",
-    "vue-router": "^4.0.0-rc.1"
+    "vue-router": "^4.0.0-rc.1",
+    "vue-sanity": "^1.0.0-beta.0"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.0-rc.1",

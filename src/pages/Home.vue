@@ -99,5 +99,9 @@ export default {
       .then((entries) => (this.entries = entries))
       .catch((err) => console.error("Oh noes: %s", err.message))
   },
+  setup() {
+    const terms = useSanityFetcher(query)
+    return { terms }
+  },
 }
 </script>
