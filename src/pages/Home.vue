@@ -1,9 +1,6 @@
 <template>
   <ul>
     <p>{{ blocks }}</p>
-
-    <SanityContent :blocks="blocks" />
-
     <li v-for="entry in entries" :key="entry._id">
       <router-link :to="`/term/${entry._id}`">{{
         entry.content[$i18n.locale]?.preferredTerm
@@ -13,8 +10,6 @@
 </template>
 
 <script>
-import { SanityContent } from "../components/sanity-content.ts"
-
 const query = /* groq */ `*[_type == "entry"]
 {
  _id,
@@ -27,9 +22,6 @@ const query = /* groq */ `*[_type == "entry"]
 
 export default {
   name: "Home",
-  components: {
-    SanityContent,
-  },
   data() {
     return {
       entries: [],
